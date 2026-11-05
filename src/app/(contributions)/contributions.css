@@ -113,7 +113,7 @@
 .givva-form-card h1 {
   margin: 18.76px 0 12px;
   text-align: center;
-  font-size: var(--givva-control-size);
+  font-size: calc(var(--givva-control-size) * 1.2);
   font-weight: 700;
   line-height: 1.3;
   overflow-wrap: anywhere;

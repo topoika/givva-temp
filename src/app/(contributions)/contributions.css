@@ -26,7 +26,7 @@
 .givva-campaign-details {
   max-width: 1200px;
   margin: 16px auto 0;
-  padding: 40px;
+  padding: 40px 16px;
 }
 
 .givva-cover {
@@ -197,7 +197,7 @@
     flex: 1;
     flex-direction: column;
     width: 100%;
-    padding: 24px;
+    padding: 24px 0;
   }
 
   .givva-footer {
@@ -214,7 +214,7 @@
 }
 
 @media (max-width: 360px) {
-  .givva-campaign-details, .givva-form-card { padding-inline: 16px; }
+  .givva-form-card { padding-inline: 16px; }
   .givva-field input { padding-inline: 12px; }
   .givva-beneficiary { padding-inline: 12px; }
   .givva-button-verify { padding-inline: 12px; }
@@ -261,7 +261,7 @@
   grid-template-columns: minmax(0, 136px) minmax(0, 1fr);
   align-items: center;
   gap: 12px 24px;
-  padding: 12px;
+  padding: 18px;
 }
 
 .givva-event-image {
@@ -277,36 +277,16 @@
 
 .givva-event-description { margin-top: 12px; font-size: 13px; line-height: 1.5; color: var(--givva-label); overflow-wrap: anywhere; }
 
-.givva-event-section summary {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 20px 0;
-  cursor: pointer;
-  list-style: none;
-}
-
-.givva-event-section summary::-webkit-details-marker { display: none; }
-.givva-event-section[open] summary { padding-bottom: 0; }
-.givva-event-section:not([open]) summary { padding-bottom: 14px; }
-.givva-chevron { width: 18px; height: 18px; margin-top: 6px; flex-shrink: 0; transition: transform .2s ease; }
-.givva-event-section:not([open]) .givva-chevron { transform: rotate(-90deg); }
+.givva-event-section .givva-event-heading { margin: 18px 22px 0; }
 
 .givva-muted { font-size: 11px; color: var(--givva-muted); }
 
-.givva-progress {
-  display: grid;
-  grid-template-columns: 80px minmax(0, 1fr);
-  align-items: center;
-  gap: 24px;
-  padding: 18px 20px 20px;
-}
+.givva-progress { display: grid; place-items: center; padding: 18px 22px 26px; }
 
-.givva-ring { position: relative; width: 80px; height: 80px; }
+.givva-ring { position: relative; width: 128px; height: 128px; }
 .givva-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-.givva-ring circle { fill: none; stroke-width: 6; }
-.givva-ring-track { stroke: rgb(0 0 0 / 6%); }
+.givva-ring circle { fill: none; stroke-width: 8; }
+.givva-ring-track { stroke: rgb(20 184 166 / 14%); }
 .givva-ring-fill { stroke: var(--givva-teal); stroke-linecap: round; transition: stroke-dashoffset .5s ease; }
 
 .givva-ring span {
@@ -314,33 +294,17 @@
   inset: 0;
   display: grid;
   place-items: center;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 800;
   color: var(--givva-teal);
 }
-
-.givva-progress-raised { font-size: 13px; font-weight: 700; color: var(--givva-teal); }
-
-.givva-progress-bar {
-  height: 5px;
-  margin: 12px 0 14px;
-  overflow: hidden;
-  border-radius: 5px;
-  background: rgb(0 0 0 / 6%);
-}
-
-.givva-progress-bar span { display: block; height: 100%; border-radius: inherit; background: var(--givva-teal); }
-
-.givva-progress-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-.givva-progress-stats div { display: flex; flex-direction: column-reverse; gap: 2px; }
-.givva-progress-stats dd { font-size: 13px; font-weight: 700; }
 
 .givva-dates {
   display: grid;
   grid-template-columns: 38px minmax(0, 1fr);
   align-items: center;
   gap: 16px;
-  padding: 18px 20px 22px;
+  padding: 18px 22px 24px;
 }
 
 .givva-dates-icon {
@@ -372,8 +336,15 @@
 }
 
 @media (max-width: 360px) {
-  .givva-event-summary { grid-template-columns: 110px minmax(0, 1fr); gap: 12px; }
-  .givva-progress { grid-template-columns: 64px minmax(0, 1fr); gap: 16px; padding-inline: 16px; }
-  .givva-ring { width: 64px; height: 64px; }
-  .givva-ring span { font-size: 14px; }
+  .givva-event-summary { grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding: 14px; }
+  .givva-ring { width: 108px; height: 108px; }
+  .givva-ring span { font-size: 26px; }
+  .givva-event-banner { gap: 4px; font-size: 10.5px; letter-spacing: 0; }
+  .givva-event-banner img { height: 34px; }
+  .givva-dates { gap: 12px; padding-inline: 16px; }
+  .givva-event-section .givva-event-heading { margin-inline: 16px; }
+  .givva-dates dl div { padding-right: 10px; }
+  .givva-dates dl div + div { padding-left: 12px; }
+  .givva-dates dd { font-size: 12px; white-space: nowrap; }
 }
+

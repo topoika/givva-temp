@@ -11,7 +11,6 @@ export type Campaign = {
 export type FundraiserEvent = Campaign & {
   target: number;
   raised: number;
-  contributors: number;
   startDate: string | null;
   deadline: string | null;
 };

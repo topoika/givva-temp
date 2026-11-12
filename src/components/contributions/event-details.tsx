@@ -1,32 +1,22 @@
 import Image from "next/image";
-import { LuChevronDown } from "react-icons/lu";
 import { PiCalendarDots, PiHandHeart } from "react-icons/pi";
 import { ButtonLink } from "@/components/ui/button";
 import GivvaFooter from "@/components/contributions/givva-footer";
 import type { FundraiserEvent } from "@/lib/contribution";
 
-const DAY = 86_400_000;
-
-const money = (value: number) => `Kes ${value.toLocaleString("en-KE", { maximumFractionDigits: 2 })}`;
-
 const formatDate = (value: string | null) => value
   ? new Date(value).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Africa/Nairobi" })
   : "Not set";
 
-function daysLeft(deadline: string | null) {
-  if (!deadline) return 0;
-  return Math.max(0, Math.ceil((new Date(deadline).getTime() - Date.now()) / DAY));
-}
-
 function ProgressRing({ percent }: { percent: number }) {
-  const radius = 34;
+  const radius = 52;
   const circumference = 2 * Math.PI * radius;
   return (
     <div className="givva-ring" role="img" aria-label={`${percent}% funded`}>
-      <svg viewBox="0 0 80 80" aria-hidden="true">
-        <circle cx="40" cy="40" r={radius} className="givva-ring-track" />
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r={radius} className="givva-ring-track" />
         <circle
-          cx="40" cy="40" r={radius} className="givva-ring-fill"
+          cx="60" cy="60" r={radius} className="givva-ring-fill"
           strokeDasharray={circumference}
           strokeDashoffset={circumference * (1 - Math.min(percent, 100) / 100)}
         />
@@ -38,13 +28,10 @@ function ProgressRing({ percent }: { percent: number }) {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <details className="givva-event-card givva-event-section" open>
-      <summary>
-        <h2 className="givva-heading givva-event-heading">{title}</h2>
-        <LuChevronDown aria-hidden="true" className="givva-chevron" />
-      </summary>
+    <section className="givva-event-card givva-event-section">
+      <h2 className="givva-heading givva-event-heading">{title}</h2>
       {children}
-    </details>
+    </section>
   );
 }
 
@@ -80,17 +67,6 @@ export default function EventDetails({ event }: { event: FundraiserEvent }) {
               <Section title="Contribution Progress">
                 <div className="givva-progress">
                   <ProgressRing percent={percent} />
-                  <div className="givva-progress-info">
-                    <p className="givva-progress-raised">{money(event.raised)}</p>
-                    <p className="givva-muted">raised of {money(event.target)}</p>
-                    <div className="givva-progress-bar" aria-hidden="true">
-                      <span style={{ width: `${Math.min(percent, 100)}%` }} />
-                    </div>
-                    <dl className="givva-progress-stats">
-                      <div><dt className="givva-muted">Contributors</dt><dd>{event.contributors}</dd></div>
-                      <div><dt className="givva-muted">Days left</dt><dd>{daysLeft(event.deadline)}</dd></div>
-                    </dl>
-                  </div>
                 </div>
               </Section>
 

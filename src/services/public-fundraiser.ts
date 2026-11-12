@@ -4,7 +4,6 @@ import { apiRequest } from "@/lib/api";
 
 const text = (value: unknown) => typeof value === "string" ? value.trim() : "";
 const amount = (value: unknown) => typeof value === "number" && Number.isFinite(value) ? value : 0;
-const count = (...values: unknown[]) => amount(values.find(value => typeof value === "number"));
 
 // The API returns East Africa Time without an offset, e.g. "2026-10-29 00:00:00".
 function apiDate(value: unknown) {
@@ -47,7 +46,6 @@ export const getPublicFundraiser = cache(async (id: string) => {
     cover: coverUrl(result.images),
     target: amount(result.targetAmount),
     raised: amount(result.totalContributions),
-    contributors: count(result.totalContributors, result.contributorsCount, result.numberOfContributors),
     startDate: apiDate(result.startDate),
     deadline: apiDate(result.deadline),
     allowsDirectWithdrawals: result.allowsDirectWithdrawals !== false,
